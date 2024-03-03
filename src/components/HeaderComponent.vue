@@ -20,7 +20,7 @@
           <input 
             :class="$style.inputBar"
             type="search" 
-            placeholder="羽入 最高"
+            placeholder="어떤 상품을 찾으시나요?"
           />
         </div>
 
@@ -53,10 +53,41 @@
       </div>
 
       <div :class="$style.right">
+        <RouterLink
+          :class="$style.topMenu"
+          v-for="item in topMenus"
+          :key="item.text"
+          :to="item.router"
+        >
+          <img 
+            :class="$style.topMenuIcon" 
+            :src="item.iconLink" 
+          />
+          <span :class="$style.topMenuText">
+            {{ item.text }}
+          </span>
+        </RouterLink>
       </div>
     </div>
+
     <div :class="$style.bottom">
-      a
+      <div :class="$style.category">
+        <img 
+          :class="$style.categoryIcon"
+          src="@/assets/image/icon_hamburger.png" 
+        />
+        <span :class="$style.categoryText">카테고리</span>
+      </div>
+      <div :class="$style.bottomMenuList">
+        <RouterLink 
+          :class="$style.bottomMenu" 
+          v-for="item in bottomMenus" 
+          :key="item.text"
+          :to="item.router"
+        > 
+          {{ item.text }}
+        </RouterLink>
+      </div>
     </div>
   </main>
 </div>
@@ -65,12 +96,59 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import router from '@/router';
+import type { Menu } from '@/types/type.ts';
 
 const topics:Ref<string[]> = ref([
   "하뉴","리카","레나","케이이치","사토코",
   "미온","시온","히후미","토미타케","사토시",
   "후루데","마에바라","소노자키","히나미자와"
 ]);
+
+const topMenus:Menu[] = [
+  {
+    text: "채팅하기",
+    iconLink: "src/assets/image/icon_chat.png",
+    router: "/chat",
+  },
+  {
+    text: "판매하기",
+    iconLink: "src/assets/image/icon_shopping.png",
+    router: "/sell",
+  },
+  {
+    text: "마이",
+    iconLink: "src/assets/image/icon_person.png",
+    router: "/mypage",
+  },
+];
+
+const bottomMenus:Menu[] = [
+  {
+    text: "이벤트",
+    router: "/event",
+  },
+  {
+    text: "사기조회",
+    router: "/sagi",
+  },
+  {
+    text: "시세조회",
+    router: "/sise",
+  },
+  {
+    text: "출석체크",
+    router: "/dailycheck",
+  },
+  {
+    text: "찜한 상품",
+    router: "/favorite",
+  },
+  {
+    text: "내 폰 팔기",
+    router: "/sellphone",
+  },
+];
+
 const nowTopics:Ref<string[]> = ref([]);
 const topicPage:Ref<number> = ref(1);
 const lastPage:Ref<number> = ref(Math.trunc((topics.value.length - 1) / 5) + 1)
@@ -81,6 +159,7 @@ const keywordClicked = (item:String) => router.push('/search/'+item);
 
 const getTopics = () => {
   nowTopics.value = [];
+
   let lastTopicLocate = 5 * (topicPage.value - 1) + 4;
   let firstTopicLocate = 5 * (topicPage.value - 1);
 
@@ -114,8 +193,10 @@ getTopics();
 
   position: fixed;
   top: 60px;
+  
+  border-bottom: 1px solid #d6d6d6;
 
-  .index {
+  > .index {
     width: 1024px;
     height: 160px;
     max-width: 1024px;
@@ -202,13 +283,77 @@ getTopics();
           }
         }
       }
+
+      > .right {
+        margin: auto 0;
+
+        > .topMenu {
+          display: inline-block;
+
+          > .topMenuIcon {
+            width: 20px;
+            height: 20px;
+
+            margin-right: 4px;
+          }
+
+          > .topMenuText {
+            font-size: 14px;
+            vertical-align: top;
+
+            margin-right: 12px;
+          }
+        }
+      }
     }
     
-    .bottom {
+    > .bottom {
       width: 100%;
       height: 64px;
 
-      background-color: rgb(96, 86, 75);
+      display: flex;
+
+      > .category {
+        display: inline-block;
+        font-size: 14px;
+        margin: auto 20px auto 0;
+        padding: 10px 14px;
+
+        background-color: #ffacac;
+        border-radius: 5px;
+
+        > .categoryIcon {
+          width: 20px;
+          height: 20px;
+
+          margin: auto 0;
+        }
+
+        > .categoryText {
+          display: inline-block;
+          vertical-align: top;
+
+          margin-top: 2px;
+          margin-left: 4px;
+        }
+      }
+      > .bottomMenuList {
+        margin: auto 0;
+        
+        > .bottomMenu {
+          display: inline-block;
+          font-size: 16px;
+
+          padding: 12px 16px;
+
+          border-bottom: none;
+          transition: border-bottom 3s ease;
+        }
+
+        > .bottomMenu:hover {
+          border-bottom: 2px solid #000;
+        }
+      }
     }
   }
 }
