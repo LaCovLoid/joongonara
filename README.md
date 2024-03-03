@@ -15,7 +15,17 @@ npm init vue@latest  로 기본 파일 구성
 
 ```
 typeScript 기반
+npm
 vue3
-scss
+sscss
 vite
+```
+
+## css 작성 규칙
+
+```
+CamelCase 이름 형식
+
+속성 값의 위치 우선순위
+width,height > display > text > margin,padding > etc...
 ```

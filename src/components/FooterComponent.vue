@@ -1,13 +1,10 @@
 <template>
-  <main :class="$style.index">
-
-  </main>
+  <div>
+  </div>
 </template>
 
 <script setup lang="ts">
 </script>
 
 <style lang="scss" module>
-.index {
-}
 </style>
