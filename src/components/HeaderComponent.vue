@@ -78,6 +78,7 @@
         />
         <span :class="$style.categoryText">카테고리</span>
       </div>
+
       <div :class="$style.bottomMenuList">
         <RouterLink 
           :class="$style.bottomMenu" 
@@ -256,10 +257,10 @@ getTopics();
         }
 
         > .hotTopic {
-          margin-left: 36px;
-
           display: flex;
           font-size: 12px;
+
+          margin-left: 36px;
 
           position: absolute;
           bottom: -25px;
@@ -316,6 +317,7 @@ getTopics();
       > .category {
         display: inline-block;
         font-size: 14px;
+
         margin: auto 20px auto 0;
         padding: 10px 14px;
 
@@ -339,7 +341,7 @@ getTopics();
       }
       > .bottomMenuList {
         margin: auto 0;
-        
+
         > .bottomMenu {
           display: inline-block;
           font-size: 16px;
