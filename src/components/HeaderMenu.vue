@@ -7,7 +7,7 @@
         <img
           :class="$style.logo"
           src="@/assets/image/joongonara.svg"
-          @click="logoClicked()"
+          @click="goHome()"
         />
       </div>
 
@@ -31,18 +31,18 @@
           <img
             :class="$style.arrow"
             src="@/assets/image/icon/arrow_left.png"
-            @click="arrowClicked('left')"
+            @click="movePage(-1)"
           />
           <img
             :class="$style.arrow"
             src="@/assets/image/icon/arrow_right.png" 
-            @click="arrowClicked('right')"
+            @click="movePage(1)"
           />
           <span
             :class="$style.topicKeyword"
             v-for="(item,index) in nowTopics" 
             :key="index"
-            @click="keywordClicked(item)"
+            @click="searchKeyword(item)"
           >
             <span style="font-weight: bold;">
               {{ 5 * (topicPage - 1) + index + 1 }}
@@ -97,66 +97,20 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import router from '@/router';
-import type { Menu } from '@/types/type.ts';
+import type { Menu } from '@/types/navigation';
+import data from '@/assets/josn/headerData.json';
 
-const topics:Ref<string[]> = ref([
-  "하뉴","리카","레나","케이이치","사토코",
-  "미온","시온","히후미","토미타케","사토시",
-  "후루데","마에바라","소노자키","히나미자와"
-]);
-
-const topMenus:Menu[] = [
-  {
-    text: "채팅하기",
-    iconLink: "src/assets/image/icon/chat.png",
-    router: "/chat",
-  },
-  {
-    text: "판매하기",
-    iconLink: "src/assets/image/icon/shopping.png",
-    router: "/sell",
-  },
-  {
-    text: "마이",
-    iconLink: "src/assets/image/icon/person.png",
-    router: "/mypage",
-  },
-];
-
-const bottomMenus:Menu[] = [
-  {
-    text: "이벤트",
-    router: "/event",
-  },
-  {
-    text: "사기조회",
-    router: "/sagi",
-  },
-  {
-    text: "시세조회",
-    router: "/sise",
-  },
-  {
-    text: "출석체크",
-    router: "/dailycheck",
-  },
-  {
-    text: "찜한 상품",
-    router: "/favorite",
-  },
-  {
-    text: "내 폰 팔기",
-    router: "/sellphone",
-  },
-];
+const topics:Ref<string[]> = ref(data.topics);
+const topMenus:Menu[] = data.topMenus;
+const bottomMenus:Menu[] = data.bottomMenus;
 
 const nowTopics:Ref<string[]> = ref([]);
 const topicPage:Ref<number> = ref(1);
 const lastPage:Ref<number> = ref(Math.trunc((topics.value.length - 1) / 5) + 1)
 
-const logoClicked = () => router.push('/');
+const goHome = () => router.push('/');
 
-const keywordClicked = (item:String) => router.push('/search/'+item);
+const searchKeyword = (keyword:String) => router.push('/search/'+keyword);
 
 const getTopics = () => {
   nowTopics.value = [];
@@ -164,23 +118,16 @@ const getTopics = () => {
   let lastTopicLocate = 5 * (topicPage.value - 1) + 4;
   let firstTopicLocate = 5 * (topicPage.value - 1);
 
-  if (topicPage.value == lastPage.value) {
-    lastTopicLocate = topics.value.length - 1;
-  } 
+  if (topicPage.value == lastPage.value) lastTopicLocate = topics.value.length - 1;
+
   for (let i = firstTopicLocate; i < lastTopicLocate + 1; i++) {
     nowTopics.value.push(topics.value[i]);
   }
-  console.log(nowTopics.value);
 }
 
-const arrowClicked = (key:String) => {
-  if (key == 'left') {
-    topicPage.value--;
-    if (topicPage.value == 0) topicPage.value = lastPage.value;
-  } else {
-    topicPage.value++;
-    if (topicPage.value == lastPage.value + 1) topicPage.value = 1;
-  }
+const movePage = (pageMove: number) => {
+  topicPage.value += pageMove;
+  topicPage.value = (topicPage.value = topicPage.value < 1 ? lastPage.value : topicPage.value) > lastPage.value ? 1 : topicPage.value;
   getTopics();
 }
 
@@ -203,7 +150,6 @@ getTopics();
     max-width: 1024px;
 
     margin: 0 auto;
-
 
     > .top {
       width: 100%;
@@ -360,4 +306,4 @@ getTopics();
   }
 }
 
-</style>
+</style>@/types/navigation
