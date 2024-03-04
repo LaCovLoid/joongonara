@@ -6,7 +6,7 @@
       <div :class="$style.left">
         <img
           :class="$style.logo"
-          src="@/assets/image/logo_joongonara.svg"
+          src="@/assets/image/joongonara.svg"
           @click="logoClicked()"
         />
       </div>
@@ -15,7 +15,7 @@
         <div :class="$style.searchBar">
           <img
             :class="$style.searchIcon"
-            src="@/assets/image/icon_magnifier.png"
+            src="@/assets/image/icon/magnifier.png"
           />
           <input 
             :class="$style.inputBar"
@@ -30,12 +30,12 @@
         >
           <img
             :class="$style.arrow"
-            src="@/assets/image/icon_arrow_left.png"
+            src="@/assets/image/icon/arrow_left.png"
             @click="arrowClicked('left')"
           />
           <img
             :class="$style.arrow"
-            src="@/assets/image/icon_arrow_right.png" 
+            src="@/assets/image/icon/arrow_right.png" 
             @click="arrowClicked('right')"
           />
           <span
@@ -74,7 +74,7 @@
       <div :class="$style.category">
         <img 
           :class="$style.categoryIcon"
-          src="@/assets/image/icon_hamburger.png" 
+          src="@/assets/image/icon/hamburger.png" 
         />
         <span :class="$style.categoryText">카테고리</span>
       </div>
@@ -108,17 +108,17 @@ const topics:Ref<string[]> = ref([
 const topMenus:Menu[] = [
   {
     text: "채팅하기",
-    iconLink: "src/assets/image/icon_chat.png",
+    iconLink: "src/assets/image/icon/chat.png",
     router: "/chat",
   },
   {
     text: "판매하기",
-    iconLink: "src/assets/image/icon_shopping.png",
+    iconLink: "src/assets/image/icon/shopping.png",
     router: "/sell",
   },
   {
     text: "마이",
-    iconLink: "src/assets/image/icon_person.png",
+    iconLink: "src/assets/image/icon/person.png",
     router: "/mypage",
   },
 ];

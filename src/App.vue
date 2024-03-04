@@ -1,17 +1,17 @@
 
 <template>
-  <TopEventComponent />
-  <HeaderComponent />
+  <TopEvent />
+  <HeaderMenu />
   <RouterView /> <!--그 라우터 주소에 따라 상황에 맞는 view를 출력함-->
-  <FooterComponent />
+  <FooterText />
 </template>
 
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import TopEventComponent from '@/components/TopEventComponent.vue';
-import HeaderComponent from '@/components/HeaderComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
+import TopEvent from '@/components/TopEvent.vue';
+import HeaderMenu from '@/components/HeaderMenu.vue';
+import FooterText from '@/components/FooterText.vue';
 </script>
 
 <style scoped>
