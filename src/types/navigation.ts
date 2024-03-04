@@ -1,6 +1,6 @@
 
 export interface Menu {
-  text: string,
-  iconLink?: string,
+  text?: string,
+  imageLink?: string,
   router: string,
 }

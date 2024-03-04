@@ -1,0 +1,28 @@
+{
+  "eventImages": [
+    {
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "router": "/goods/5"
+    },
+    {
+      "imageLink": "src/assets/image/example/cafe2.jpg",
+      "router": "/goods/20"
+    },
+    {
+      "imageLink": "src/assets/image/example/food1.jpg",
+      "router": "/goods/1"
+    },
+    {
+      "imageLink": "src/assets/image/example/food132.jpg",
+      "router": "/goods/12"
+    },
+    {
+      "imageLink": "src/assets/image/example/pizza.jpg",
+      "router": "/goods/661"
+    },
+    {
+      "imageLink": "src/assets/image/example/rakugaki.jpg",
+      "router": "/goods/6"
+    }
+  ]
+}

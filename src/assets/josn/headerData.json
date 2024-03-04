@@ -8,17 +8,17 @@
   "topMenus": [
     {
       "text": "채팅하기",
-      "iconLink": "src/assets/image/icon/chat.png",
+      "imageLink": "src/assets/image/icon/chat.png",
       "router": "/chat"
     },
     {
       "text": "판매하기",
-      "iconLink": "src/assets/image/icon/shopping.png",
+      "imageLink": "src/assets/image/icon/shopping.png",
       "router": "/sell"
     },
     {
       "text": "마이",
-      "iconLink": "src/assets/image/icon/person.png",
+      "imageLink": "src/assets/image/icon/person.png",
       "router": "/mypage"
     }
   ],

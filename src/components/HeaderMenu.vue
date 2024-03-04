@@ -61,7 +61,7 @@
         >
           <img 
             :class="$style.topMenuIcon" 
-            :src="item.iconLink" 
+            :src="item.imageLink" 
           />
           <span :class="$style.topMenuText">
             {{ item.text }}
@@ -294,12 +294,12 @@ getTopics();
 
           padding: 12px 16px;
 
-          border-bottom: none;
+          border-bottom: 2px solid #ffffff;
           transition: border-bottom 3s ease;
         }
 
         > .bottomMenu:hover {
-          border-bottom: 2px solid #000;
+          border-bottom: 2px solid #000000;
         }
       }
     }
