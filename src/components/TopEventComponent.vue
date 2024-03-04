@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.index">
-    <img src="@/assets/image/banner/event.webp" :class="$style.image" alt=""/>
+    <img src="https://web.joongna.com/_next/static/media/app-download-banner.16dfe881.webp" :class="$style.image" alt=""/>
   </div>
 </template>
 

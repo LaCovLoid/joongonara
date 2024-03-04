@@ -6,8 +6,8 @@
       <div :class="$style.left">
         <img
           :class="$style.logo"
-          src="@/assets/image/joongonara.svg"
-          @click="goHome()"
+          src="@/assets/image/logo_joongonara.svg"
+          @click="logoClicked()"
         />
       </div>
 
@@ -15,7 +15,7 @@
         <div :class="$style.searchBar">
           <img
             :class="$style.searchIcon"
-            src="@/assets/image/icon/magnifier.png"
+            src="@/assets/image/icon_magnifier.png"
           />
           <input 
             :class="$style.inputBar"
@@ -30,19 +30,19 @@
         >
           <img
             :class="$style.arrow"
-            src="@/assets/image/icon/arrow_left.png"
-            @click="movePage(-1)"
+            src="@/assets/image/icon_arrow_left.png"
+            @click="arrowClicked('left')"
           />
           <img
             :class="$style.arrow"
-            src="@/assets/image/icon/arrow_right.png" 
-            @click="movePage(1)"
+            src="@/assets/image/icon_arrow_right.png" 
+            @click="arrowClicked('right')"
           />
           <span
             :class="$style.topicKeyword"
             v-for="(item,index) in nowTopics" 
             :key="index"
-            @click="searchKeyword(item)"
+            @click="keywordClicked(item)"
           >
             <span style="font-weight: bold;">
               {{ 5 * (topicPage - 1) + index + 1 }}
@@ -74,7 +74,7 @@
       <div :class="$style.category">
         <img 
           :class="$style.categoryIcon"
-          src="@/assets/image/icon/hamburger.png" 
+          src="@/assets/image/icon_hamburger.png" 
         />
         <span :class="$style.categoryText">카테고리</span>
       </div>
@@ -97,20 +97,66 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import router from '@/router';
-import type { Menu } from '@/types/navigation';
-import data from '@/assets/josn/headerData.json';
+import type { Menu } from '@/types/type.ts';
 
-const topics:Ref<string[]> = ref(data.topics);
-const topMenus:Menu[] = data.topMenus;
-const bottomMenus:Menu[] = data.bottomMenus;
+const topics:Ref<string[]> = ref([
+  "하뉴","리카","레나","케이이치","사토코",
+  "미온","시온","히후미","토미타케","사토시",
+  "후루데","마에바라","소노자키","히나미자와"
+]);
+
+const topMenus:Menu[] = [
+  {
+    text: "채팅하기",
+    iconLink: "src/assets/image/icon_chat.png",
+    router: "/chat",
+  },
+  {
+    text: "판매하기",
+    iconLink: "src/assets/image/icon_shopping.png",
+    router: "/sell",
+  },
+  {
+    text: "마이",
+    iconLink: "src/assets/image/icon_person.png",
+    router: "/mypage",
+  },
+];
+
+const bottomMenus:Menu[] = [
+  {
+    text: "이벤트",
+    router: "/event",
+  },
+  {
+    text: "사기조회",
+    router: "/sagi",
+  },
+  {
+    text: "시세조회",
+    router: "/sise",
+  },
+  {
+    text: "출석체크",
+    router: "/dailycheck",
+  },
+  {
+    text: "찜한 상품",
+    router: "/favorite",
+  },
+  {
+    text: "내 폰 팔기",
+    router: "/sellphone",
+  },
+];
 
 const nowTopics:Ref<string[]> = ref([]);
 const topicPage:Ref<number> = ref(1);
 const lastPage:Ref<number> = ref(Math.trunc((topics.value.length - 1) / 5) + 1)
 
-const goHome = () => router.push('/');
+const logoClicked = () => router.push('/');
 
-const searchKeyword = (keyword:String) => router.push('/search/'+keyword);
+const keywordClicked = (item:String) => router.push('/search/'+item);
 
 const getTopics = () => {
   nowTopics.value = [];
@@ -118,16 +164,23 @@ const getTopics = () => {
   let lastTopicLocate = 5 * (topicPage.value - 1) + 4;
   let firstTopicLocate = 5 * (topicPage.value - 1);
 
-  if (topicPage.value == lastPage.value) lastTopicLocate = topics.value.length - 1;
-
+  if (topicPage.value == lastPage.value) {
+    lastTopicLocate = topics.value.length - 1;
+  } 
   for (let i = firstTopicLocate; i < lastTopicLocate + 1; i++) {
     nowTopics.value.push(topics.value[i]);
   }
+  console.log(nowTopics.value);
 }
 
-const movePage = (pageMove: number) => {
-  topicPage.value += pageMove;
-  topicPage.value = (topicPage.value = topicPage.value < 1 ? lastPage.value : topicPage.value) > lastPage.value ? 1 : topicPage.value;
+const arrowClicked = (key:String) => {
+  if (key == 'left') {
+    topicPage.value--;
+    if (topicPage.value == 0) topicPage.value = lastPage.value;
+  } else {
+    topicPage.value++;
+    if (topicPage.value == lastPage.value + 1) topicPage.value = 1;
+  }
   getTopics();
 }
 
@@ -150,6 +203,7 @@ getTopics();
     max-width: 1024px;
 
     margin: 0 auto;
+
 
     > .top {
       width: 100%;
@@ -306,4 +360,4 @@ getTopics();
   }
 }
 
-</style>@/types/navigation
+</style>
