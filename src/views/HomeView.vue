@@ -3,7 +3,11 @@
     <div :class="$style.imageList">
 
       <div :class="$style.top">
-        <img :class="[$style.arrow, $style.arrowLeft]" src="@/assets/image/icon/arrow_left.png" @click="imageMove(-1)" />
+        <img 
+          :class="[$style.arrow, $style.arrowLeft]"  
+          src="@/assets/image/icon/arrow_left.png" 
+          @click="imageMove(-1)"
+        />
         
         <RouterLink 
           :to="getImageRouterLink(index-2)" 
@@ -11,14 +15,26 @@
           v-for="index in 3"
           :key="index"
         >
-          <img :class="$style.eventImage" :src="getImageSrc(index-2)" />
+          <img 
+            :class="$style.eventImage" 
+            :src="getImageSrc(index-2)" 
+          />
         </RouterLink>
 
-        <img :class="[$style.arrow, $style.arrowRight]" src="@/assets/image/icon/arrow_right.png" @click="imageMove(1)" />
+        <img 
+          :class="[$style.arrow, $style.arrowRight]" 
+          src="@/assets/image/icon/arrow_right.png" 
+          @click="imageMove(1)" 
+        />
       </div>
 
       <div :class="$style.bottom">
-        <div :class="getImageLocateStyle(index - 1)" v-for="index in (lastImageIndex + 1)" :key="index">
+        <div 
+          :class="getImageLocateStyle(index - 1)" 
+          v-for="index in (lastImageIndex + 1)" 
+          :key="index"
+          @click="setImageIndex(index - 1)" 
+        >
         </div>
       </div>
     </div>
@@ -53,6 +69,10 @@ const getImageLocateStyle = (index: number) => {
 
 const imageMove = (moveIndex: number) => {
   nowImageIndex.value = limitIndex(nowImageIndex.value + moveIndex);
+}
+
+const setImageIndex = (index: number) => {
+  nowImageIndex.value = index;
 }
 
 const limitIndex = (index: number) => {
@@ -90,6 +110,7 @@ setInterval(() =>{timeIncrease()}, 5000);
 
         border-radius: 15px;
         background-color: #d7d7d7;
+        cursor: pointer;
 
         &:hover {
           background-color: #adadad;
@@ -116,24 +137,23 @@ setInterval(() =>{timeIncrease()}, 5000);
     }
     > .bottom {
       text-align: center;
-
       margin-top: 10px;
     }
   }
 }
 </style>
-<style lang="css">
 
+<style lang="css">
 .imageLocate {
   width: 8px;
   height: 8px;
 
   display: inline-block;
-
   margin: 4px;
 
   border-radius: 4px;
   background-color: #c2c2c2;
+  cursor: pointer;
 }
 .selected {
   width: 24px;
