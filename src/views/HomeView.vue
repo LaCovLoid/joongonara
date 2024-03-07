@@ -1,93 +1,161 @@
 <template>
   <main :class="$style.index">
-    <div :class="$style.imageList">
+    <div :class="$style.bannerList">
+
 
       <div :class="$style.top">
         <img 
           :class="[$style.arrow, $style.arrowLeft]"  
           src="@/assets/image/icon/arrow_left.png" 
-          @click="imageMove(-1)"
+          @click="bannerMove(-1)"
         />
         
         <RouterLink 
-          :to="getImageRouterLink(index-2)" 
-          :class="$style.imageRouter"
+          :to="getBannerRouterLink(index-2)" 
+          :class="$style.bannerRouter"
           v-for="index in 3"
           :key="index"
         >
           <img 
-            :class="$style.eventImage" 
-            :src="getImageSrc(index-2)" 
+            :class="$style.eventBanner" 
+            :src="getBannerSrc(index-2)" 
           />
         </RouterLink>
 
         <img 
           :class="[$style.arrow, $style.arrowRight]" 
           src="@/assets/image/icon/arrow_right.png" 
-          @click="imageMove(1)" 
+          @click="bannerMove(1)" 
         />
       </div>
 
       <div :class="$style.bottom">
         <div 
-          :class="getImageLocateStyle(index - 1)" 
-          v-for="index in (lastImageIndex + 1)" 
+          :class="getImageLocateStyle('banner', index - 1)" 
+          v-for="index in (banners.length)" 
           :key="index"
-          @click="setImageIndex(index - 1)" 
+          @click="setImageIndex('banner', index - 1)" 
         >
         </div>
       </div>
     </div>
 
+
     <span :class="$style.title">당신을 위한 추천상품!</span>
 
+    <div :class="$style.goodsList">
+      <RouterLink  
+        v-for="index in 4"
+        :key="index"
+        :to="data.testGoods[index - 1].router"
+      >
+        <GoodsBig 
+          :propData="data.testGoods[index - 1]"
+        />
+      </RouterLink>
+    </div>
+
+    <span :class="$style.title">세븐일레븐 편의점 픽업!</span>
+    <div :class="$style.goodsList">
+      <RouterLink  
+        v-for="item in convenienceGoods"
+        :key="item.router"
+        :to="item.router"
+      >
+        <GoodsSmall 
+          :propData="item"
+        />
+      </RouterLink>
+    </div>
+
+    <div :class="$style.bottom">
+      <div 
+        :class="getImageLocateStyle('convenience', index)" 
+        v-for="index in lastConveniencePage" 
+        :key="index"
+        @click="setImageIndex('convenience', index)" 
+      >
+      </div>
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import type { Menu } from '@/types/UIType';
+import type { Menu,Goods } from '@/types/UIType';
 import data from '@/assets/josn/homeViewData.json';
+import GoodsBig from '@/components/GoodsBig.vue';
+import GoodsSmall from '@/components/GoodsSmall.vue';
 
-const images:Ref<Menu[]> = ref(data.eventImages);
-let lastImageIndex:Ref<number> = ref(images.value.length - 1);
-let nowImageIndex:Ref<number> = ref(0);
+const banners:Ref<Menu[]> = ref(data.eventBanners);
+let convenienceGoods:Ref<Goods[]> = ref([]);
 
-  
-const getImageSrc = (imageIndex: number) => {
-  let index:number = limitIndex(nowImageIndex.value + imageIndex);
-  return images.value[index].imageLink;
+let nowBannerIndex:Ref<number> = ref(0);
+let nowConveniencePage:Ref<number> = ref(1);
+let lastConveniencePage:Ref<number> = ref(Math.ceil(data.testGoods.length / 6));
+
+//배너 이미지의 링크와 router링크를 받아옴
+const getBannerSrc = (value: number) => {
+  let index:number = limitIndex(nowBannerIndex.value + value);
+  return banners.value[index].imageLink;
 }
-const getImageRouterLink = (imageIndex: number) => {
-  let index:number = limitIndex(nowImageIndex.value + imageIndex);
-  return images.value[index].router;
+const getBannerRouterLink = (value: number) => {
+  let index:number = limitIndex(nowBannerIndex.value + value);
+  return banners.value[index].router;
 }
 
-const getImageLocateStyle = (index: number) => {
-  if (index == nowImageIndex.value) return "imageLocate selected";
+//class이름을 반환해줌
+const getImageLocateStyle = (name: String, index: number) => {
+  switch (name) {
+    case 'banner':
+      if (index == nowBannerIndex.value) return "imageLocate selected";
+      break;
+    case 'convenience':
+    if (index == nowConveniencePage.value) return "imageLocate selected";
+      break;
+  }
   return "imageLocate";
 }
 
-const imageMove = (moveIndex: number) => {
-  nowImageIndex.value = limitIndex(nowImageIndex.value + moveIndex);
+//현재 이미지의 위치
+const setImageIndex = (name: String, index: number) => {
+  switch (name) {
+    case 'banner':
+      nowBannerIndex.value = index;
+      break;
+    case 'convenience':
+      nowConveniencePage.value = index;
+      setConvenienceGoods();
+      break;
+  }
 }
 
-const setImageIndex = (index: number) => {
-  nowImageIndex.value = index;
+const setConvenienceGoods = () => {
+  convenienceGoods.value = [];
+  let lastPageIndex = (nowConveniencePage.value == lastConveniencePage.value) ? data.testGoods.length % 6 :6;
+  if (lastPageIndex == 0) lastPageIndex = 6;
+  let startIndex = (nowConveniencePage.value - 1) * 6;
+
+  for (let i = startIndex; i < startIndex + lastPageIndex ; i++) {
+    convenienceGoods.value.push(data.testGoods[i]);
+  }
+
 }
+
+const bannerMove = (moveIndex: number) => nowBannerIndex.value = limitIndex(nowBannerIndex.value + moveIndex);
 
 const limitIndex = (index: number) => {
-  if (index == -1) index = lastImageIndex.value;
-  if (index == lastImageIndex.value + 1) index = 0;
+  if (index == -1) index = banners.value.length - 1;
+  if (index == banners.value.length) index = 0;
   return index;
 }
 
 const timeIncrease = () => {
-  nowImageIndex.value = limitIndex(nowImageIndex.value + 1);
+  nowBannerIndex.value = limitIndex(nowBannerIndex.value + 1);
 }
 
 setInterval(() =>{timeIncrease()}, 5000);
-
+setConvenienceGoods();
 </script>
 
 <style lang="scss" module>
@@ -95,8 +163,8 @@ setInterval(() =>{timeIncrease()}, 5000);
   width: 1024px;
   margin: 0 auto;
 
-  > .imageList {
-    margin: 20px 0 96px 0;
+  > .bannerList {
+    margin: 20px 0 0 0;
 
     > .top{
       text-align: center;
@@ -124,8 +192,8 @@ setInterval(() =>{timeIncrease()}, 5000);
       }
       
 
-      > .imageRouter{
-        > .eventImage {
+      > .bannerRouter{
+        > .eventBanner {
           width: 315px;
           height: 315px;
 
@@ -143,10 +211,24 @@ setInterval(() =>{timeIncrease()}, 5000);
   }
 
   > .title {
-    font-size: 21px;
+    display: block;
+
+    font-size: 22px;
     font-weight: bold;
     color: #212121;
+
+    margin-top: 96px;
+    margin-bottom: 40px;
   }
+  > .goodsList {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  > .bottom {
+      text-align: center;
+      margin-top: 10px;
+    }
 }
 </style>
 

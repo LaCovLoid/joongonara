@@ -7,8 +7,8 @@ export interface Menu {
 
 export interface Goods {
   name: string,
-  price: string,
-  uploadTime: string,
+  price: number,
+  uploadTime: number,
   imageLink: string,
   userLocate: string,
   router: string,

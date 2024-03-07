@@ -1,5 +1,5 @@
 {
-  "eventImages": [
+  "eventBanners": [
     {
       "imageLink": "src/assets/image/example/cafe1.jpg",
       "router": "/goods/5"
@@ -23,6 +23,113 @@
     {
       "imageLink": "src/assets/image/example/rakugaki.jpg",
       "router": "/goods/6"
+    }
+  ],
+
+  "testGoods": [
+    {
+      "name": "temp0",
+      "price": 50000,
+      "uploadTime": 1709805888888,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "인천 XX동",
+      "router": "/goods/0"
+    },
+    {
+      "name": "temp1",
+      "price": 13001,
+      "uploadTime": 1709811111111,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/1"
+    },
+    {
+      "name": "temp2",
+      "price": 13002,
+      "uploadTime": 1709805777777,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/2"
+    },
+    {
+      "name": "temp3",
+      "price": 13000,
+      "uploadTime": 1709805666666,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/3"
+    },
+    {
+      "name": "temp4",
+      "price": 13000,
+      "uploadTime": 1709805555555,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/4"
+    },
+    {
+      "name": "temp5",
+      "price": 13000,
+      "uploadTime": 1709805444444,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/5"
+    },
+    {
+      "name": "temp6",
+      "price": 13000,
+      "uploadTime": 1709805333333,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/6"
+    },
+    {
+      "name": "temp7",
+      "price": 13000,
+      "uploadTime": 1709805222222,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/7"
+    },
+    {
+      "name": "temp8",
+      "price": 13000,
+      "uploadTime": 1709805111111,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/8"
+    },
+    {
+      "name": "temp9",
+      "price": 13000,
+      "uploadTime": 1709805000000,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/9"
+    },
+    {
+      "name": "temp10",
+      "price": 13000,
+      "uploadTime": 1709805123456,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/10"
+    },
+    {
+      "name": "temp11",
+      "price": 13000,
+      "uploadTime": 1709805654321,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/11"
+    },
+    {
+      "name": "temp12",
+      "price": 13000,
+      "uploadTime": 1709805654321,
+      "imageLink": "src/assets/image/example/cafe1.jpg",
+      "userLocate": "서울 OO동",
+      "router": "/goods/12"
     }
   ]
 }

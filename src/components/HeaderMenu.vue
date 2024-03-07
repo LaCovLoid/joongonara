@@ -1,6 +1,6 @@
 <template>
-<div :class="$style.container">
-  <main :class="$style.index">
+<div :class="$style.index">
+  <main :class="$style.container">
     <div :class="$style.top">
 
       <div :class="$style.left">
@@ -136,15 +136,17 @@ getTopics();
 </script>
 
 <style lang="scss" module>
-.container {
+.index {
   width: 100%;
 
   position: fixed;
   top: 60px;
   
+  background-color: #ffffff;
   border-bottom: 1px solid #d6d6d6;
+  z-index: 5;
 
-  > .index {
+  > .container {
     width: 1024px;
     height: 160px;
     max-width: 1024px;
