@@ -97,7 +97,7 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import router from '@/router';
-import type { Menu } from '@/types/navigation';
+import type { Menu } from '@/types/UIType';
 import data from '@/assets/josn/headerData.json';
 
 const topics:Ref<string[]> = ref(data.topics);
@@ -306,4 +306,4 @@ getTopics();
   }
 }
 
-</style>@/types/navigation
+</style>@/types/navigation@/types/UIType

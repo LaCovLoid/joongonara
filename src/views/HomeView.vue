@@ -38,14 +38,15 @@
         </div>
       </div>
     </div>
+
+    <span :class="$style.title">당신을 위한 추천상품!</span>
+
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import router from '@/router';
-import type { Menu } from '@/types/navigation';
-import { compileStyle } from 'vue/compiler-sfc';
+import type { Menu } from '@/types/UIType';
 import data from '@/assets/josn/homeViewData.json';
 
 const images:Ref<Menu[]> = ref(data.eventImages);
@@ -109,11 +110,10 @@ setInterval(() =>{timeIncrease()}, 5000);
 
 
         border-radius: 15px;
-        background-color: #d7d7d7;
         cursor: pointer;
 
         &:hover {
-          background-color: #adadad;
+          background-color: #d7d7d7;
         }
       }
       > .arrowLeft {
@@ -135,10 +135,17 @@ setInterval(() =>{timeIncrease()}, 5000);
         }
       }
     }
+
     > .bottom {
       text-align: center;
       margin-top: 10px;
     }
+  }
+
+  > .title {
+    font-size: 21px;
+    font-weight: bold;
+    color: #212121;
   }
 }
 </style>
