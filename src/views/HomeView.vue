@@ -77,6 +77,13 @@
       >
       </div>
     </div>
+
+    <div :class="$style.application">
+      <img :class="$style.backgroundImage" src="@/assets/image/banner/app_joongo.webp"/>
+      <img :class="$style.googlePlay" src="@/assets/image/banner/google_play.webp"/>
+      <img :class="$style.appStore" src="@/assets/image/banner/app_store.webp"/>
+      <img :class="$style.qrCode" src="@/assets/image/QRcode.webp"/>
+    </div>
   </main>
 </template>
 
@@ -228,7 +235,42 @@ setConvenienceGoods();
   > .bottom {
       text-align: center;
       margin-top: 10px;
+  }
+
+  > .application {
+    height: 272px;
+    position: relative;
+
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+
+    > .backgroundImage {
+      width: 1024px;
+      position: absolute;
     }
+    > .googlePlay {
+      height: 43px;
+      
+      position: absolute;
+      top: 150px;
+      left: 160px;
+    }
+    > .appStore {
+      height: 43px;
+
+      position: absolute;
+      top: 150px;
+      left: 300px;
+    }
+    > .qrCode {
+      height: 43px;
+
+      position: absolute;
+      top: 150px;
+      left: 440px;
+    }
+  }
 }
 </style>
 
