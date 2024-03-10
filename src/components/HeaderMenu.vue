@@ -1,6 +1,6 @@
 <template>
-<div :class="$style.container">
-  <main :class="$style.index">
+<div :class="$style.index">
+  <main :class="$style.container">
     <div :class="$style.top">
 
       <div :class="$style.left">
@@ -61,7 +61,7 @@
         >
           <img 
             :class="$style.topMenuIcon" 
-            :src="item.iconLink" 
+            :src="item.imageLink" 
           />
           <span :class="$style.topMenuText">
             {{ item.text }}
@@ -97,7 +97,7 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import router from '@/router';
-import type { Menu } from '@/types/navigation';
+import type { Menu } from '@/types/UIType';
 import data from '@/assets/josn/headerData.json';
 
 const topics:Ref<string[]> = ref(data.topics);
@@ -136,15 +136,17 @@ getTopics();
 </script>
 
 <style lang="scss" module>
-.container {
+.index {
   width: 100%;
 
   position: fixed;
   top: 60px;
   
+  background-color: #ffffff;
   border-bottom: 1px solid #d6d6d6;
+  z-index: 5;
 
-  > .index {
+  > .container {
     width: 1024px;
     height: 160px;
     max-width: 1024px;
@@ -294,16 +296,16 @@ getTopics();
 
           padding: 12px 16px;
 
-          border-bottom: none;
+          border-bottom: 2px solid #ffffff;
           transition: border-bottom 3s ease;
         }
 
         > .bottomMenu:hover {
-          border-bottom: 2px solid #000;
+          border-bottom: 2px solid #000000;
         }
       }
     }
   }
 }
 
-</style>@/types/navigation
+</style>@/types/navigation@/types/UIType

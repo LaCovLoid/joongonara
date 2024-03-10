@@ -2,8 +2,8 @@
 <template>
   <TopEvent />
   <HeaderMenu />
-  <RouterView /> <!--그 라우터 주소에 따라 상황에 맞는 view를 출력함-->
-  <FooterText />
+  <RouterView :class="$style.routerView" /> <!--그 라우터 주소에 따라 상황에 맞는 view를 출력함-->
+  <FooterComponent />
 </template>
 
 
@@ -11,8 +11,11 @@
 import { RouterView } from 'vue-router';
 import TopEvent from '@/components/TopEvent.vue';
 import HeaderMenu from '@/components/HeaderMenu.vue';
-import FooterText from '@/components/FooterText.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
-<style scoped>
+<style lang="scss" module>
+.routerView {
+  padding-top: 220px;
+}
 </style>
