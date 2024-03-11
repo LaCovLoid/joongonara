@@ -1,0 +1,420 @@
+{
+  "category":[
+    {
+      "name": "수입명품",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "패션의류",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item6",
+          "router": "/category_item1"
+        },
+        {
+          "name": "item7",
+          "router": "/category_item2"
+        },
+        {
+          "name": "item8",
+          "router": "/category_item3"
+        },
+        {
+          "name": "item9",
+          "router": "/category_item4"
+        },
+        {
+          "name": "item5123",
+          "router": "/category_item5"
+        }
+      ]
+    },
+    {
+      "name": "패션잡화",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1asf",
+          "router": "/category_item6"
+        },
+        {
+          "name": "item2awd",
+          "router": "/category_item7"
+        },
+        {
+          "name": "item3afs",
+          "router": "/category_item8"
+        },
+        {
+          "name": "item4zxcx",
+          "router": "/category_item9"
+        },
+        {
+          "name": "item5asdsa",
+          "router": "/category_item10"
+        }
+      ]
+    },
+    {
+      "name": "뷰티",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1vdsva",
+          "router": "/category_item11"
+        },
+        {
+          "name": "item2ewffc",
+          "router": "/category_item12"
+        },
+        {
+          "name": "item3fdsv",
+          "router": "/category_item13"
+        },
+        {
+          "name": "item4qweds",
+          "router": "/category_item14"
+        },
+        {
+          "name": "item5yhbv",
+          "router": "/category_item15"
+        }
+      ]
+    },
+    {
+      "name":"출산/유아동",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item16"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item17"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item18"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item19"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item20"
+        }
+      ]
+    },
+    {
+      "name": "모바일/태블릿",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item21"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item22"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item23"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item24"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item25"
+        }
+      ]
+    },
+    {
+      "name": "가전제품",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item26"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item27"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item28"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item29"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item30"
+        }
+      ]
+    },
+    {
+      "name": "노트북/PC",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "카메라/캠코더",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "가구/인테리어",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "리빙/생활",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "게임",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "반려동물/취미",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "도서/음반/문구",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "티켓/쿠폰",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    },
+    {
+      "name": "스포츠",
+      "router": "/category",
+      "item": [
+        {
+          "name": "item1",
+          "router": "/category_item"
+        },
+        {
+          "name": "item2",
+          "router": "/category_item"
+        },
+        {
+          "name": "item3",
+          "router": "/category_item"
+        },
+        {
+          "name": "item4",
+          "router": "/category_item"
+        },
+        {
+          "name": "item5",
+          "router": "/category_item"
+        }
+      ]
+    }
+  ]
+}
