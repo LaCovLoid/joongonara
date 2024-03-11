@@ -47,10 +47,10 @@
       <RouterLink  
         v-for="index in 4"
         :key="index"
-        :to="data.testGoods[index - 1].router"
+        :to="goodsData.testGoods[index - 1].router"
       >
         <GoodsBig 
-          :propData="data.testGoods[index - 1]"
+          :propData="goodsData.testGoods[index - 1]"
         />
       </RouterLink>
     </div>
@@ -90,16 +90,17 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import type { Menu,Goods } from '@/types/UIType';
-import data from '@/assets/josn/homeViewData.json';
+import bannerData from '@/assets/josn/bannerData.json';
+import goodsData from '@/assets/josn/goodsData.json';
 import GoodsBig from '@/components/GoodsBig.vue';
 import GoodsSmall from '@/components/GoodsSmall.vue';
 
-const banners:Ref<Menu[]> = ref(data.eventBanners);
+const banners:Ref<Menu[]> = ref(bannerData.eventBanners);
 let convenienceGoods:Ref<Goods[]> = ref([]);
 
 let nowBannerIndex:Ref<number> = ref(0);
 let nowConveniencePage:Ref<number> = ref(1);
-let lastConveniencePage:Ref<number> = ref(Math.ceil(data.testGoods.length / 6));
+let lastConveniencePage:Ref<number> = ref(Math.ceil(goodsData.testGoods.length / 6));
 
 //배너 이미지의 링크와 router링크를 받아옴
 const getBannerSrc = (value: number) => {
@@ -139,12 +140,12 @@ const setImageIndex = (name: String, index: number) => {
 
 const setConvenienceGoods = () => {
   convenienceGoods.value = [];
-  let lastPageIndex = (nowConveniencePage.value == lastConveniencePage.value) ? data.testGoods.length % 6 :6;
+  let lastPageIndex = (nowConveniencePage.value == lastConveniencePage.value) ? goodsData.testGoods.length % 6 :6;
   if (lastPageIndex == 0) lastPageIndex = 6;
   let startIndex = (nowConveniencePage.value - 1) * 6;
 
   for (let i = startIndex; i < startIndex + lastPageIndex ; i++) {
-    convenienceGoods.value.push(data.testGoods[i]);
+    convenienceGoods.value.push(goodsData.testGoods[i]);
   }
 
 }
@@ -207,6 +208,7 @@ setConvenienceGoods();
           margin: 0 12px;
 
           border-radius: 5px;
+          object-fit: cover;
         }
       }
     }

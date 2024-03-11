@@ -63,11 +63,11 @@
         <div :class="$style.categoryList" v-if="visibleCategory">
           <RouterLink 
           :class="$style.categoryItem" 
-          v-for="(item,index) in categoryItem" 
-          :key="index"
+          v-for="(item) in category" 
+          :key="item.router"
           :to="item.router"
           >
-            {{ item.text }}
+            {{ item.name }}
           </RouterLink>
         </div>
       </div>
@@ -87,10 +87,10 @@
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import type { Menu,Goods } from '@/types/UIType';
-import data from '@/assets/josn/footerData.json';
+import type { Menu } from '@/types/UIType';
+import data from '@/assets/josn/menuData.json';
 
-const categoryItem: Ref<Menu[]> = ref(data.categoryItem);
+const category: Ref<{name:string, router:string}[]> = ref(data.category);
 const companyItem: Ref<String[]> = ref(data.companyItem);
 const contactItem: Ref<Menu[]> = ref(data.contactItem);
 const informationItem: Ref<Menu[]> = ref(data.informationItem);

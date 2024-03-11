@@ -71,15 +71,23 @@
     </div>
 
     <div :class="$style.bottom">
-      <div :class="$style.category" @mouseover="setVisibleCategory(true)" @mouseleave="setVisibleCategory(false)">
-        <img 
-          :class="$style.categoryIcon"
-          src="@/assets/image/icon/hamburger.png" 
-        />
+      <div 
+        :class="$style.category" 
+        @mouseover="setVisibleCategory(true)" 
+        @mouseleave="setVisibleCategory(false)"
+        @click="setVisibleCategory(false)"
+        >
+
+        <img :class="$style.categoryIcon" src="@/assets/image/icon/hamburger.png"/>
         <span :class="$style.categoryText">
           카테고리
         </span>
-        <ExtendMenu v-if="visibleCategory" @mouseenter="setVisibleCategory(true)" @mouseleave="setVisibleCategory(false)"/>
+
+        <ExtendMenu
+          v-if="visibleCategory"
+          @mouseenter="setVisibleCategory(true)"
+          @mouseleave="setVisibleCategory(false)"
+        />
 
       </div>
 
@@ -104,12 +112,12 @@
 import { ref, type Ref } from 'vue';
 import router from '@/router';
 import type { Menu } from '@/types/UIType';
-import data from '@/assets/josn/headerData.json';
+import data from '@/assets/josn/menuData.json';
 import ExtendMenu from './ExtendMenu.vue';
 
 const topics:Ref<string[]> = ref(data.topics);
-const topMenus:Menu[] = data.topMenus;
-const bottomMenus:Menu[] = data.bottomMenus;
+const topMenus:Menu[] = data.headerTopMenus;
+const bottomMenus:Menu[] = data.headerBottomMenus;
 
 const nowTopics:Ref<string[]> = ref([]);
 const topicPage:Ref<number> = ref(1);

@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import extendMenuItem from '@/assets/josn/extendMenuItem.json';
+import extendMenuItem from '@/assets/josn/menuData.json';
 
 const category: any = extendMenuItem.category;
 let itemList: Ref<{name:string, router: string}[]> = ref([]);
