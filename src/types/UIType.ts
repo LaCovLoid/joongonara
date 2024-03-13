@@ -11,5 +11,6 @@ export interface Goods {
   uploadTime: number,
   imageLink: string,
   userLocate: string,
+  category: string,
   router: string,
 }
