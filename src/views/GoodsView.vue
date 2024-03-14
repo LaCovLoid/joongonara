@@ -1,5 +1,5 @@
 <template>
-  <main :class="$style.index">
+  <main :class="$style.index" v-if="goods">
     <div :class="$style.container">
 
       <img :class="$style.mainImage" :src="goods.imageLink">
@@ -70,23 +70,33 @@
         </div>
       </div>
 
-
     </div>
+  </main>
+
+  <main v-else>
+    <span>물건의 정보를 읽어오지 못하였습니다. </span>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
+import { ref, type Ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+
+import { addPriceComma, calcTimestamp } from '@/api/goodsAPI';
 import { type Goods } from '@/types/UIType';
 import data from '@/assets/josn/goodsData.json';
-import { addPriceComma, calcTimestamp } from '@/api/goodsAPI';
-
-const id = useRoute().params.id;
+import { piniaStore } from '@/store';
 
 const goods: Ref<Goods> = ref(data.testGoods[1]);
+const store = piniaStore();
 
-console.log("test id = " + id);
+
+onMounted(() => {
+  const id = useRoute().params.id;
+  console.log("test id = " + id);
+
+  store.addHistory(String(id));
+});
 
 </script>
 
