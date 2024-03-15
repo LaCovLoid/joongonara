@@ -13,12 +13,9 @@ export const piniaStore = defineStore('storeId', {
     },
 
     addHistory(value: string){
+      console.log("addHistory");
       const empty: boolean = this.history[this.history.length - 1] == "";
       const overlap: boolean = this.history.includes(value);
-
-      console.log(value,"bbb");
-      if (isNaN(Number(value))) return;
-      console.log(value,"aaa");
 
       //중복이 있는지 확인
       if (overlap) {
@@ -50,7 +47,6 @@ export const piniaStore = defineStore('storeId', {
     removeHistory(value: number){
       this.history.splice(value,1);
       this.history.push("");
-      console.log(this.history,"router",value);
     }
   },
   getters: {

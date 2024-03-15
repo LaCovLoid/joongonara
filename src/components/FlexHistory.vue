@@ -14,7 +14,9 @@
           X
         </span>
 
-        {{ item }}
+        <RouterLink :to="'/goods/' + item">
+          {{ item }}
+        </RouterLink>
 
       </div>
     </div>
@@ -33,29 +35,31 @@ import { useRoute } from 'vue-router';
 const store = piniaStore();
 const route = useRoute();
 
-const history: string[] = store.getHistory;
+let history: string[] = store.getHistory;
 let goodsList: Ref<string[]> = ref([]);
 
-const historyState = computed(() => route.path);
+
+const checkRoute = computed(() => route.path);
 
 const refreshHistory = () => {
   goodsList.value = [];
-  let id = String(route.params.id);
+  history = store.getHistory;
 
-  if (id != 'undefined' && id != null) {
-    goodsList.value.push(id);
-  }
+  let id = String(route.params.id);
+  if (id != 'undefined' && id != null) goodsList.value.push(id);
 
   for (let i = history.length - 1; i >= 0; i--) {
-    if (history[i] != "") {
+    if (history[i] != "" && history[i] != id) {
       goodsList.value.push(history[i]);
     }
   }
 
   if (goodsList.value.length == 4) goodsList.value.pop();
+
+  console.log(goodsList.value, history)
 }
 
-watch(historyState, refreshHistory);
+watch(checkRoute, refreshHistory);
 
 const removeHistory = (value: number) => {
   goodsList.value.splice(value, 1);
@@ -93,12 +97,16 @@ const removeHistory = (value: number) => {
 
       text-align: center;
 
+      display: block;
       margin-top: 10px;
 
       position: relative;
       border: 1px solid #000000;
 
       > .closeButton {
+        padding: 1px 5px;
+        
+        border: 1px solid #000000;
         position: absolute;
         top: 5px;
         right: 10px;

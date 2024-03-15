@@ -4,6 +4,8 @@
 
       <img :class="$style.mainImage" :src="goods.imageLink">
 
+      {{ id }}
+
       <div :class="$style.information">
         <span :class="[$style.infoText,$style.category]">
           {{ goods.category }}
@@ -79,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref, onMounted } from 'vue';
+import { ref, type Ref, onMounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { addPriceComma, calcTimestamp } from '@/api/goodsAPI';
@@ -89,14 +91,22 @@ import { piniaStore } from '@/store';
 
 const goods: Ref<Goods> = ref(data.testGoods[1]);
 const store = piniaStore();
+const route = useRoute();
 
+let id: Ref<number> = ref(isNaN(Number(route.params.id)) ? -1 : Number(route.params.id));
 
-onMounted(() => {
-  const id = useRoute().params.id;
-  console.log("test id = " + id);
-
-  store.addHistory(String(id));
+onMounted(()=>{
+  refresh();
 });
+
+const checkRoute = computed(() => route.path);
+const refresh = () => {
+  id.value = isNaN(Number(route.params.id)) ? -1 : Number(route.params.id);
+  store.addHistory(String(id.value));
+  console.log("test id = " + id.value);
+}
+
+watch(checkRoute, refresh);
 
 </script>
 
