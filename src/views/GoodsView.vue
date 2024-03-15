@@ -1,5 +1,5 @@
 <template>
-  <main :class="$style.index" v-if="goods">
+  <main :class="$style.index" v-if="id != -1">
     <div :class="$style.container">
 
       <img :class="$style.mainImage" :src="goods.imageLink">

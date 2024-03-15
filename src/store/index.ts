@@ -13,10 +13,11 @@ export const piniaStore = defineStore('storeId', {
     },
 
     addHistory(value: string){
-      console.log("addHistory");
       const empty: boolean = this.history[this.history.length - 1] == "";
       const overlap: boolean = this.history.includes(value);
 
+      if (isNaN(Number(value)) || Number(value) == -1) return;
+      
       //중복이 있는지 확인
       if (overlap) {
         this.history.splice(this.history.indexOf(value), 1);

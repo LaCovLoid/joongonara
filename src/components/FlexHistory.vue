@@ -40,7 +40,6 @@ let goodsList: Ref<string[]> = ref([]);
 
 
 const checkRoute = computed(() => route.path);
-
 const refreshHistory = () => {
   goodsList.value = [];
   history = store.getHistory;
@@ -55,8 +54,6 @@ const refreshHistory = () => {
   }
 
   if (goodsList.value.length == 4) goodsList.value.pop();
-
-  console.log(goodsList.value, history)
 }
 
 watch(checkRoute, refreshHistory);
@@ -65,7 +62,6 @@ const removeHistory = (value: number) => {
   goodsList.value.splice(value, 1);
   store.removeHistory(goodsList.value.length - value);
 }
-
 
 </script>
 
@@ -107,6 +103,7 @@ const removeHistory = (value: number) => {
         padding: 1px 5px;
         
         border: 1px solid #000000;
+
         position: absolute;
         top: 5px;
         right: 10px;
