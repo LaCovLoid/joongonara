@@ -71,12 +71,24 @@
     </div>
 
     <div :class="$style.bottom">
-      <div :class="$style.category">
-        <img 
-          :class="$style.categoryIcon"
-          src="@/assets/image/icon/hamburger.png" 
+      <div 
+        :class="$style.category" 
+        @mouseover="setVisibleCategory(true)" 
+        @mouseleave="setVisibleCategory(false)"
+        @click="setVisibleCategory(false)"
+        >
+
+        <img :class="$style.categoryIcon" src="@/assets/image/icon/hamburger.png"/>
+        <span :class="$style.categoryText">
+          카테고리
+        </span>
+
+        <ExtendMenu
+          v-if="visibleCategory"
+          @mouseenter="setVisibleCategory(true)"
+          @mouseleave="setVisibleCategory(false)"
         />
-        <span :class="$style.categoryText">카테고리</span>
+
       </div>
 
       <div :class="$style.bottomMenuList">
@@ -92,25 +104,31 @@
     </div>
   </main>
 </div>
+
+
 </template>
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import router from '@/router';
 import type { Menu } from '@/types/UIType';
-import data from '@/assets/josn/headerData.json';
+import data from '@/assets/josn/menuData.json';
+import ExtendMenu from './ExtendMenu.vue';
 
 const topics:Ref<string[]> = ref(data.topics);
-const topMenus:Menu[] = data.topMenus;
-const bottomMenus:Menu[] = data.bottomMenus;
+const topMenus:Menu[] = data.headerTopMenus;
+const bottomMenus:Menu[] = data.headerBottomMenus;
 
 const nowTopics:Ref<string[]> = ref([]);
 const topicPage:Ref<number> = ref(1);
 const lastPage:Ref<number> = ref(Math.trunc((topics.value.length - 1) / 5) + 1)
+let visibleCategory:Ref<boolean> = ref(false);
 
 const goHome = () => router.push('/');
 
 const searchKeyword = (keyword:String) => router.push('/search/'+keyword);
+
+const setVisibleCategory = (value: boolean) => visibleCategory.value = value;
 
 const getTopics = () => {
   nowTopics.value = [];
@@ -271,6 +289,7 @@ getTopics();
 
         background-color: #ffacac;
         border-radius: 5px;
+        cursor: pointer;
 
         > .categoryIcon {
           width: 20px;
@@ -308,4 +327,9 @@ getTopics();
   }
 }
 
-</style>@/types/navigation@/types/UIType
+.extendMenu {
+  position: fixed;
+  top: 220px;
+}
+
+</style>

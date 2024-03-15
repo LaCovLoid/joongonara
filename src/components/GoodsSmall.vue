@@ -36,9 +36,12 @@ const goods:Ref<Goods> = ref(propData.propData);
   vertical-align: top;
 
   .image {
-    width: 100%;
+    width: 150px;
+    height: 150px;
 
     border-radius: 5px;
+    
+    object-fit: cover;
   }
 
   .container {
