@@ -13,7 +13,7 @@ import { RouterView } from 'vue-router';
 import TopEvent from '@/components/TopEvent.vue';
 import HeaderMenu from '@/components/HeaderMenu.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
-import FlexHistory from './components/FlexHistory.vue';
+import FlexHistory from '@/components/FlexHistory.vue';
 </script>
 
 <style lang="scss" module>

@@ -90,8 +90,8 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import type { Menu,Goods } from '@/types/UIType';
-import bannerData from '@/assets/josn/bannerData.json';
-import goodsData from '@/assets/josn/goodsData.json';
+import bannerData from '@/assets/json/bannerData.json';
+import goodsData from '@/assets/json/goodsData.json';
 import GoodsBig from '@/components/GoodsBig.vue';
 import GoodsSmall from '@/components/GoodsSmall.vue';
 

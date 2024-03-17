@@ -88,7 +88,7 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
 import type { Menu } from '@/types/UIType';
-import data from '@/assets/josn/menuData.json';
+import data from '@/assets/json/menuData.json';
 
 const category: Ref<{name:string, router:string}[]> = ref(data.category);
 const companyItem: Ref<String[]> = ref(data.companyItem);

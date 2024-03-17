@@ -112,7 +112,7 @@
 import { ref, type Ref } from 'vue';
 import router from '@/router';
 import type { Menu } from '@/types/UIType';
-import data from '@/assets/josn/menuData.json';
+import data from '@/assets/json/menuData.json';
 import ExtendMenu from './ExtendMenu.vue';
 
 const topics:Ref<string[]> = ref(data.topics);

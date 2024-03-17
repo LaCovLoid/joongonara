@@ -86,7 +86,7 @@ import { useRoute } from 'vue-router';
 
 import { addPriceComma, calcTimestamp } from '@/api/goodsAPI';
 import { type Goods } from '@/types/UIType';
-import data from '@/assets/josn/goodsData.json';
+import data from '@/assets/json/goodsData.json';
 import { piniaStore } from '@/store';
 
 const goods: Ref<Goods> = ref(data.testGoods[1]);
