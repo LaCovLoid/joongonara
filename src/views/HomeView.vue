@@ -2,7 +2,6 @@
   <main :class="$style.index">
     <div :class="$style.bannerList">
 
-
       <div :class="$style.top">
         <img 
           :class="[$style.arrow, $style.arrowLeft]"  
@@ -40,16 +39,14 @@
       </div>
     </div>
 
-
     <span :class="$style.title">당신을 위한 추천상품!</span>
-
     <div :class="$style.goodsList">
       <RouterLink  
         v-for="index in 4"
         :key="index"
         :to="goodsData.testGoods[index - 1].router"
       >
-        <GoodsBig 
+        <GoodsBig
           :propData="goodsData.testGoods[index - 1]"
         />
       </RouterLink>
@@ -88,8 +85,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import type { Menu,Goods } from '@/types/UIType';
+
 import bannerData from '@/assets/json/bannerData.json';
 import goodsData from '@/assets/json/goodsData.json';
 import GoodsBig from '@/components/GoodsBig.vue';
@@ -112,7 +110,7 @@ const getBannerRouterLink = (value: number) => {
   return banners.value[index].router;
 }
 
-//class이름을 반환해줌
+//class이름을 반환
 const getImageLocateStyle = (name: String, index: number) => {
   switch (name) {
     case 'banner':
@@ -125,7 +123,7 @@ const getImageLocateStyle = (name: String, index: number) => {
   return "imageLocate";
 }
 
-//현재 이미지의 위치
+//현재 이미지의 위치를 설정
 const setImageIndex = (name: String, index: number) => {
   switch (name) {
     case 'banner':
@@ -147,11 +145,11 @@ const setConvenienceGoods = () => {
   for (let i = startIndex; i < startIndex + lastPageIndex ; i++) {
     convenienceGoods.value.push(goodsData.testGoods[i]);
   }
-
 }
 
 const bannerMove = (moveIndex: number) => nowBannerIndex.value = limitIndex(nowBannerIndex.value + moveIndex);
 
+//현재index가 최대값과 최소값을 안넘기게 제한해줌
 const limitIndex = (index: number) => {
   if (index == -1) index = banners.value.length - 1;
   if (index == banners.value.length) index = 0;
@@ -162,8 +160,11 @@ const timeIncrease = () => {
   nowBannerIndex.value = limitIndex(nowBannerIndex.value + 1);
 }
 
-setInterval(() =>{timeIncrease()}, 5000);
-setConvenienceGoods();
+onMounted(()=>{
+  setInterval(() =>{timeIncrease()}, 5000);
+  setConvenienceGoods();
+})
+
 </script>
 
 <style lang="scss" module>
@@ -192,6 +193,7 @@ setConvenienceGoods();
           background-color: #d7d7d7;
         }
       }
+
       > .arrowLeft {
         left: -20px;
       }

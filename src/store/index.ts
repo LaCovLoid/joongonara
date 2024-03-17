@@ -7,6 +7,7 @@ export const piniaStore = defineStore('storeId', {
       history: ["","",""],
     }
   },
+  
   actions: {
     setCount(value: number){
       this.count = value;
@@ -50,6 +51,7 @@ export const piniaStore = defineStore('storeId', {
       this.history.push("");
     }
   },
+
   getters: {
     getCount(state){
       return state.count;

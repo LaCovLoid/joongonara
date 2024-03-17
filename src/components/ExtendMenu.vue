@@ -1,6 +1,7 @@
 <template>
   <div :class="$style.left">
     <div :class="$style.categoryList">
+
       <RouterLink 
         :class="$style.category" 
         v-for="(item,index) in category" 
@@ -24,6 +25,7 @@
     </RouterLink>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
@@ -53,14 +55,12 @@ const setItemList = (value: {name:string, router: string}[]) => {
   overflow:scroll;
   overflow-x: hidden;
 
-
   > .categoryList {
     & :hover {
       background-color: #565656;
     }
 
     > .category {
-
       display: block;
 
       padding: 10px;

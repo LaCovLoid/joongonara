@@ -3,10 +3,9 @@
     <div :class="$style.container">
 
       <img :class="$style.mainImage" :src="goods.imageLink">
-
       {{ id }}
-
       <div :class="$style.information">
+
         <span :class="[$style.infoText,$style.category]">
           {{ goods.category }}
         </span>
@@ -34,7 +33,7 @@
           </div>
 
           <div :class="$style.line" ></div>
-          
+
           <div :class="$style.boxItem">
             <span :class="$style.top">배송비</span>
             <span :class="$style.bottom">별도</span>
@@ -47,7 +46,7 @@
             <span :class="$style.bottom">미사용</span>
           </div>
         </div>
-        
+
         <div :class="$style.cardLeft">
           <li>결제혜택</li>
         </div>
@@ -57,7 +56,9 @@
           <span :class="$style.cardText">중고나라 페이 첫 결제 혜택</span>
           <span :class="$style.cardText">CU알뜰택배 택배비 500원</span>
         </div>
+
         <div></div>
+
         <div :class="$style.cardLeft">
           <li>무이자혜택</li>
         </div>
@@ -76,28 +77,25 @@
   </main>
 
   <main v-else>
-    <span>물건의 정보를 읽어오지 못하였습니다. </span>
+    <span>물건의 정보를 읽어오지 못하였습니다.</span>
   </main>
 </template>
 
 <script setup lang="ts">
+
 import { ref, type Ref, onMounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { addPriceComma, calcTimestamp } from '@/api/goodsAPI';
 import { type Goods } from '@/types/UIType';
-import data from '@/assets/json/goodsData.json';
 import { piniaStore } from '@/store';
+import data from '@/assets/json/goodsData.json';
 
 const goods: Ref<Goods> = ref(data.testGoods[1]);
 const store = piniaStore();
 const route = useRoute();
 
 let id: Ref<number> = ref(isNaN(Number(route.params.id)) ? -1 : Number(route.params.id));
-
-onMounted(()=>{
-  refresh();
-});
 
 const checkRoute = computed(() => route.path);
 const refresh = () => {
@@ -106,7 +104,10 @@ const refresh = () => {
   console.log("test id = " + id.value);
 }
 
-watch(checkRoute, refresh);
+onMounted(()=>{
+  refresh();
+  watch(checkRoute, refresh);
+});
 
 </script>
 
@@ -131,6 +132,7 @@ watch(checkRoute, refresh);
 
     > .information {
       width: 476px;
+
       vertical-align: top;
       padding: 5px;
 
@@ -188,6 +190,7 @@ watch(checkRoute, refresh);
             font-size: 12px;
             color: #8b8b8b;
           }
+
           > .bottom {
             font-size: 14px;
             font-weight: bold;

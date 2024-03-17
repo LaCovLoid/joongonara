@@ -99,15 +99,11 @@ const socialItem: Ref<Menu[]> = ref(data.socialItem);
 let visibleCategory: Ref<boolean> = ref(false);
 let categoryButtonText: Ref<String> = ref("카테고리 리스트 ▽");
 
-//플렉스히스토리 완성하기
-//푸터 완성하기
-//상세페이지들 따라하기
-//굿즈상세페이지 만들기?? 해야하나
-
 const changeVisibleCategory = () => {
   visibleCategory.value = !visibleCategory.value;
   categoryButtonText.value = visibleCategory.value ? "카테고리 리스트 △" : "카테고리 리스트 ▽";
 }
+
 const scrollToTop = () => window.scrollTo(0,0);
 
 </script>
@@ -116,6 +112,7 @@ const scrollToTop = () => window.scrollTo(0,0);
 .line {
   border-top: 1px solid #cbcbcb;
 }
+
 .index {
   width: 960px;
   margin: 50px auto 0 auto;

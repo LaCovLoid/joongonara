@@ -35,7 +35,7 @@ const goods:Ref<Goods> = ref(propData.propData);
 
   vertical-align: top;
 
-  .image {
+  > .image {
     width: 150px;
     height: 150px;
 
@@ -44,16 +44,16 @@ const goods:Ref<Goods> = ref(propData.propData);
     object-fit: cover;
   }
 
-  .container {
+  > .container {
     padding: 8px 16px;
 
-    .name {
+    > .name {
       display: block;
 
       font-size: 16px;
     }
 
-    .price {
+    > .price {
       display: block;
 
       font-size: 18px;
@@ -62,7 +62,7 @@ const goods:Ref<Goods> = ref(propData.propData);
       margin-top: 12px;
     }
 
-    .locateAndTime {
+    > .locateAndTime {
       display: block;
 
       font-size: 13px;

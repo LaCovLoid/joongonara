@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref,type Ref,computed,watch } from 'vue';
+import { ref,type Ref,computed,watch, onMounted } from 'vue';
 import { piniaStore } from '@/store/index';
 import { useRoute } from 'vue-router';
 
@@ -38,14 +38,14 @@ const route = useRoute();
 let history: string[] = store.getHistory;
 let goodsList: Ref<string[]> = ref([]);
 
-
+// route 이동 감지 후 리스트 변경
 const checkRoute = computed(() => route.path);
 const refreshHistory = () => {
   goodsList.value = [];
   history = store.getHistory;
 
   let id = String(route.params.id);
-  if (id != 'undefined' && id != null) goodsList.value.push(id);
+  if (id != 'undefined' && id != 'null') goodsList.value.push(id);
 
   for (let i = history.length - 1; i >= 0; i--) {
     if (history[i] != "" && history[i] != id) {
@@ -56,12 +56,14 @@ const refreshHistory = () => {
   if (goodsList.value.length == 4) goodsList.value.pop();
 }
 
-watch(checkRoute, refreshHistory);
-
 const removeHistory = (value: number) => {
   goodsList.value.splice(value, 1);
   store.removeHistory(goodsList.value.length - value);
 }
+
+onMounted(() => {
+  watch(checkRoute, refreshHistory);
+})
 
 </script>
 

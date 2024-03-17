@@ -2,11 +2,13 @@
   <main :class="$style.index">
     <h1>이벤트</h1>
     <div :class="$style.line"></div>
+
     <div :class="$style.stateMenu">
       <span>진행중</span>
       <span>종료</span>
       <span>당첨자 발표</span>
     </div>
+
     <div :class="$style.list">
       <RouterLink
         :class="$style.eventItem"
@@ -15,8 +17,10 @@
         :to="item.router"
       >
         <img :class="$style.image" :src="item.imageLink" />
+        {{ item.router }}
       </RouterLink>
     </div>
+
   </main>
 </template>
 
@@ -26,10 +30,6 @@ import type{ Menu } from '@/types/UIType';
 import data from '@/assets/json/bannerData.json';
 
 const eventList: Ref<Menu[]> = ref(data.eventBanners);
-
-//let eventList: Ref<Menu> = ref();
-
-//이벤트 배너 타입 새로 만들고 더미데이터 따로 만들어야함
 
 </script>
 
@@ -44,6 +44,7 @@ const eventList: Ref<Menu[]> = ref(data.eventBanners);
     grid-template-columns: 500px 500px;
 
     > .eventItem {
+      margin-bottom: 40px;
       display: inline-block;
 
       > .image {
