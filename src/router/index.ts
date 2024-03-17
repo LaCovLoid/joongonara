@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/goods/:id',
       name: 'goods',
-      component: GoodsView,
+      component: GoodsView
     },
     {
       path: '/event',

@@ -20,17 +20,15 @@
         {{ item.router }}
       </RouterLink>
     </div>
-
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import type{ Menu } from '@/types/UIType';
-import data from '@/assets/json/bannerData.json';
+import { ref, type Ref } from 'vue'
+import type { Menu } from '@/types/UIType'
+import data from '@/assets/json/bannerData.json'
 
-const eventList: Ref<Menu[]> = ref(data.eventBanners);
-
+const eventList: Ref<Menu[]> = ref(data.eventBanners)
 </script>
 
 <style lang="scss" module>
