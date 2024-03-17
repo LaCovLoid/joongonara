@@ -23,6 +23,22 @@
     {
       "imageLink": "src/assets/image/example/rakugaki.jpg",
       "router": "/goods/6"
+    },
+    {
+      "imageLink": "src/assets/image/example/rakugaki.jpg",
+      "router": "/goods/6"
+    },
+    {
+      "imageLink": "src/assets/image/example/rakugaki.jpg",
+      "router": "/goods/6"
+    },
+    {
+      "imageLink": "src/assets/image/example/rakugaki.jpg",
+      "router": "/goods/6"
+    },
+    {
+      "imageLink": "src/assets/image/example/rakugaki.jpg",
+      "router": "/goods/6"
     }
   ]
 }

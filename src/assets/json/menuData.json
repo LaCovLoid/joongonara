@@ -529,7 +529,7 @@
     },
     {
       "text": "사기조회",
-      "router": "/sagi"
+      "router": "/fraud"
     },
     {
       "text": "시세조회",

@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.left">
     <div :class="$style.categoryList">
-      <RouterLink 
-        :class="$style.category" 
-        v-for="(item,index) in category" 
+      <RouterLink
+        :class="$style.category"
+        v-for="(item, index) in category"
         :key="index"
         :to="item.router"
         @mouseenter="setItemList(item.item)"
@@ -12,7 +12,7 @@
       </RouterLink>
     </div>
   </div>
-  
+
   <div :class="$style.right" v-if="itemList.length">
     <RouterLink
       :class="$style.categoryItem"
@@ -26,16 +26,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import extendMenuItem from '@/assets/josn/menuData.json';
+import { ref, type Ref } from 'vue'
+import extendMenuItem from '@/assets/json/menuData.json'
 
-const category: any = extendMenuItem.category;
-let itemList: Ref<{name:string, router: string}[]> = ref([]);
+const category: any = extendMenuItem.category
+let itemList: Ref<{ name: string; router: string }[]> = ref([])
 
-const setItemList = (value: {name:string, router: string}[]) => {
-  itemList.value = value;
-} 
-
+const setItemList = (value: { name: string; router: string }[]) => {
+  itemList.value = value
+}
 </script>
 
 <style lang="scss" module>
@@ -46,13 +45,12 @@ const setItemList = (value: {name:string, router: string}[]) => {
   position: fixed;
   top: 210px;
   left: calc(50% - 512px);
-  
+
   background-color: #ffffff;
   border: 1px solid #000000;
   z-index: 4;
-  overflow:scroll;
+  overflow: scroll;
   overflow-x: hidden;
-
 
   > .categoryList {
     & :hover {
@@ -60,7 +58,6 @@ const setItemList = (value: {name:string, router: string}[]) => {
     }
 
     > .category {
-
       display: block;
 
       padding: 10px;
@@ -75,11 +72,11 @@ const setItemList = (value: {name:string, router: string}[]) => {
   position: fixed;
   top: 210px;
   left: calc(50% - 262px);
-  
+
   background-color: #ffffff;
   border: 1px solid #000000;
   z-index: 4;
-  overflow:scroll;
+  overflow: scroll;
   overflow-x: hidden;
 
   > .categoryItem {

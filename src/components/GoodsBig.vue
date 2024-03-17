@@ -1,13 +1,11 @@
 <template>
   <main :class="$style.index">
-    <img :class="$style.image" :src="goods.imageLink"/>
+    <img :class="$style.image" :src="goods.imageLink" />
     <div :class="$style.container">
       <span :class="$style.name">
         {{ goods.name }}
       </span>
-      <span :class="$style.price">
-        {{ addPriceComma(goods.price) }}원
-      </span>
+      <span :class="$style.price"> {{ addPriceComma(goods.price) }}원 </span>
       <span :class="$style.locateAndTime">
         {{ goods.userLocate }}
         &nbsp;|&nbsp;
@@ -18,15 +16,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import { addPriceComma,calcTimestamp } from '@/api/goodsAPI';
-import type { Goods } from '@/types/UIType';
+import { ref, type Ref } from 'vue'
+import { addPriceComma, calcTimestamp } from '@/api/goodsAPI'
+import type { Goods } from '@/types/UIType'
 
-const propData = defineProps(['propData']);
-const goods:Ref<Goods> = ref(propData.propData);
-
-
-
+const propData = defineProps(['propData'])
+const goods: Ref<Goods> = ref(propData.propData)
 </script>
 
 <style lang="scss" module>
@@ -35,25 +30,25 @@ const goods:Ref<Goods> = ref(propData.propData);
 
   vertical-align: top;
 
-  .image {
+  > .image {
     width: 240px;
     height: 240px;
 
     border-radius: 5px;
-    
+
     object-fit: cover;
   }
 
-  .container {
+  > .container {
     padding: 8px 16px;
 
-    .name {
+    > .name {
       display: block;
 
       font-size: 16px;
     }
 
-    .price {
+    > .price {
       display: block;
 
       font-size: 18px;
@@ -62,7 +57,7 @@ const goods:Ref<Goods> = ref(propData.propData);
       margin-top: 12px;
     }
 
-    .locateAndTime {
+    > .locateAndTime {
       display: block;
 
       font-size: 13px;

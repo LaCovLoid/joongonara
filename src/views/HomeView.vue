@@ -1,169 +1,155 @@
 <template>
   <main :class="$style.index">
     <div :class="$style.bannerList">
-
-
       <div :class="$style.top">
-        <img 
-          :class="[$style.arrow, $style.arrowLeft]"  
-          src="@/assets/image/icon/arrow_left.png" 
+        <img
+          :class="[$style.arrow, $style.arrowLeft]"
+          src="@/assets/image/icon/arrow_left.png"
           @click="bannerMove(-1)"
         />
-        
-        <RouterLink 
-          :to="getBannerRouterLink(index-2)" 
+
+        <RouterLink
+          :to="getBannerRouterLink(index - 2)"
           :class="$style.bannerRouter"
           v-for="index in 3"
           :key="index"
         >
-          <img 
-            :class="$style.eventBanner" 
-            :src="getBannerSrc(index-2)" 
-          />
+          <img :class="$style.eventBanner" :src="getBannerSrc(index - 2)" />
         </RouterLink>
 
-        <img 
-          :class="[$style.arrow, $style.arrowRight]" 
-          src="@/assets/image/icon/arrow_right.png" 
-          @click="bannerMove(1)" 
+        <img
+          :class="[$style.arrow, $style.arrowRight]"
+          src="@/assets/image/icon/arrow_right.png"
+          @click="bannerMove(1)"
         />
       </div>
 
       <div :class="$style.bottom">
-        <div 
-          :class="getImageLocateStyle('banner', index - 1)" 
-          v-for="index in (banners.length)" 
+        <div
+          :class="getImageLocateStyle('banner', index - 1)"
+          v-for="index in banners.length"
           :key="index"
-          @click="setImageIndex('banner', index - 1)" 
-        >
-        </div>
+          @click="setImageIndex('banner', index - 1)"
+        ></div>
       </div>
     </div>
 
-
     <span :class="$style.title">당신을 위한 추천상품!</span>
-
     <div :class="$style.goodsList">
-      <RouterLink  
-        v-for="index in 4"
-        :key="index"
-        :to="goodsData.testGoods[index - 1].router"
-      >
-        <GoodsBig 
-          :propData="goodsData.testGoods[index - 1]"
-        />
+      <RouterLink v-for="index in 4" :key="index" :to="goodsData.testGoods[index - 1].router">
+        <GoodsBig :propData="goodsData.testGoods[index - 1]" />
       </RouterLink>
     </div>
 
     <span :class="$style.title">세븐일레븐 편의점 픽업!</span>
     <div :class="$style.goodsList">
-      <RouterLink  
-        v-for="item in convenienceGoods"
-        :key="item.router"
-        :to="item.router"
-      >
-        <GoodsSmall 
-          :propData="item"
-        />
+      <RouterLink v-for="item in convenienceGoods" :key="item.router" :to="item.router">
+        <GoodsSmall :propData="item" />
       </RouterLink>
     </div>
 
     <div :class="$style.bottom">
-      <div 
-        :class="getImageLocateStyle('convenience', index)" 
-        v-for="index in lastConveniencePage" 
+      <div
+        :class="getImageLocateStyle('convenience', index)"
+        v-for="index in lastConveniencePage"
         :key="index"
-        @click="setImageIndex('convenience', index)" 
-      >
-      </div>
+        @click="setImageIndex('convenience', index)"
+      ></div>
     </div>
 
     <div :class="$style.application">
-      <img :class="$style.backgroundImage" src="@/assets/image/banner/app_joongo.webp"/>
-      <img :class="$style.googlePlay" src="@/assets/image/banner/google_play.webp"/>
-      <img :class="$style.appStore" src="@/assets/image/banner/app_store.webp"/>
-      <img :class="$style.qrCode" src="@/assets/image/QRcode.webp"/>
+      <img :class="$style.backgroundImage" src="@/assets/image/banner/app_joongo.webp" />
+      <img :class="$style.googlePlay" src="@/assets/image/banner/google_play.webp" />
+      <img :class="$style.appStore" src="@/assets/image/banner/app_store.webp" />
+      <img :class="$style.qrCode" src="@/assets/image/QRcode.webp" />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import type { Menu,Goods } from '@/types/UIType';
-import bannerData from '@/assets/josn/bannerData.json';
-import goodsData from '@/assets/josn/goodsData.json';
-import GoodsBig from '@/components/GoodsBig.vue';
-import GoodsSmall from '@/components/GoodsSmall.vue';
+import { onMounted, ref, type Ref } from 'vue'
+import type { Menu, Goods } from '@/types/UIType'
 
-const banners:Ref<Menu[]> = ref(bannerData.eventBanners);
-let convenienceGoods:Ref<Goods[]> = ref([]);
+import bannerData from '@/assets/json/bannerData.json'
+import goodsData from '@/assets/json/goodsData.json'
+import GoodsBig from '@/components/GoodsBig.vue'
+import GoodsSmall from '@/components/GoodsSmall.vue'
 
-let nowBannerIndex:Ref<number> = ref(0);
-let nowConveniencePage:Ref<number> = ref(1);
-let lastConveniencePage:Ref<number> = ref(Math.ceil(goodsData.testGoods.length / 6));
+const banners: Ref<Menu[]> = ref(bannerData.eventBanners)
+let convenienceGoods: Ref<Goods[]> = ref([])
+
+let nowBannerIndex: Ref<number> = ref(0)
+let nowConveniencePage: Ref<number> = ref(1)
+let lastConveniencePage: Ref<number> = ref(Math.ceil(goodsData.testGoods.length / 6))
 
 //배너 이미지의 링크와 router링크를 받아옴
 const getBannerSrc = (value: number) => {
-  let index:number = limitIndex(nowBannerIndex.value + value);
-  return banners.value[index].imageLink;
+  let index: number = limitIndex(nowBannerIndex.value + value)
+  return banners.value[index].imageLink
 }
 const getBannerRouterLink = (value: number) => {
-  let index:number = limitIndex(nowBannerIndex.value + value);
-  return banners.value[index].router;
+  let index: number = limitIndex(nowBannerIndex.value + value)
+  return banners.value[index].router
 }
 
-//class이름을 반환해줌
+//class이름을 반환
 const getImageLocateStyle = (name: String, index: number) => {
   switch (name) {
     case 'banner':
-      if (index == nowBannerIndex.value) return "imageLocate selected";
-      break;
+      if (index == nowBannerIndex.value) return 'imageLocate selected'
+      break
     case 'convenience':
-    if (index == nowConveniencePage.value) return "imageLocate selected";
-      break;
+      if (index == nowConveniencePage.value) return 'imageLocate selected'
+      break
   }
-  return "imageLocate";
+  return 'imageLocate'
 }
 
-//현재 이미지의 위치
+//현재 이미지의 위치를 설정
 const setImageIndex = (name: String, index: number) => {
   switch (name) {
     case 'banner':
-      nowBannerIndex.value = index;
-      break;
+      nowBannerIndex.value = index
+      break
     case 'convenience':
-      nowConveniencePage.value = index;
-      setConvenienceGoods();
-      break;
+      nowConveniencePage.value = index
+      setConvenienceGoods()
+      break
   }
 }
 
 const setConvenienceGoods = () => {
-  convenienceGoods.value = [];
-  let lastPageIndex = (nowConveniencePage.value == lastConveniencePage.value) ? goodsData.testGoods.length % 6 :6;
-  if (lastPageIndex == 0) lastPageIndex = 6;
-  let startIndex = (nowConveniencePage.value - 1) * 6;
+  convenienceGoods.value = []
+  let lastPageIndex =
+    nowConveniencePage.value == lastConveniencePage.value ? goodsData.testGoods.length % 6 : 6
+  if (lastPageIndex == 0) lastPageIndex = 6
+  let startIndex = (nowConveniencePage.value - 1) * 6
 
-  for (let i = startIndex; i < startIndex + lastPageIndex ; i++) {
-    convenienceGoods.value.push(goodsData.testGoods[i]);
+  for (let i = startIndex; i < startIndex + lastPageIndex; i++) {
+    convenienceGoods.value.push(goodsData.testGoods[i])
   }
-
 }
 
-const bannerMove = (moveIndex: number) => nowBannerIndex.value = limitIndex(nowBannerIndex.value + moveIndex);
+const bannerMove = (moveIndex: number) =>
+  (nowBannerIndex.value = limitIndex(nowBannerIndex.value + moveIndex))
 
+//현재index가 최대값과 최소값을 안넘기게 제한해줌
 const limitIndex = (index: number) => {
-  if (index == -1) index = banners.value.length - 1;
-  if (index == banners.value.length) index = 0;
-  return index;
+  if (index == -1) index = banners.value.length - 1
+  if (index == banners.value.length) index = 0
+  return index
 }
 
 const timeIncrease = () => {
-  nowBannerIndex.value = limitIndex(nowBannerIndex.value + 1);
+  nowBannerIndex.value = limitIndex(nowBannerIndex.value + 1)
 }
 
-setInterval(() =>{timeIncrease()}, 5000);
-setConvenienceGoods();
+onMounted(() => {
+  setInterval(() => {
+    timeIncrease()
+  }, 5000)
+  setConvenienceGoods()
+})
 </script>
 
 <style lang="scss" module>
@@ -174,7 +160,7 @@ setConvenienceGoods();
   > .bannerList {
     margin: 20px 0 0 0;
 
-    > .top{
+    > .top {
       text-align: center;
       position: relative;
 
@@ -184,7 +170,6 @@ setConvenienceGoods();
         position: absolute;
         top: 45%;
 
-
         border-radius: 15px;
         cursor: pointer;
 
@@ -192,15 +177,15 @@ setConvenienceGoods();
           background-color: #d7d7d7;
         }
       }
+
       > .arrowLeft {
         left: -20px;
       }
       > .arrowRight {
         right: -20px;
       }
-      
 
-      > .bannerRouter{
+      > .bannerRouter {
         > .eventBanner {
           width: 315px;
           height: 315px;
@@ -233,10 +218,10 @@ setConvenienceGoods();
     display: flex;
     justify-content: space-between;
   }
-  
+
   > .bottom {
-      text-align: center;
-      margin-top: 10px;
+    text-align: center;
+    margin-top: 10px;
   }
 
   > .application {
@@ -246,14 +231,13 @@ setConvenienceGoods();
     margin-top: 100px;
     margin-bottom: 100px;
 
-
     > .backgroundImage {
       width: 1024px;
       position: absolute;
     }
     > .googlePlay {
       height: 43px;
-      
+
       position: absolute;
       top: 150px;
       left: 160px;
@@ -293,5 +277,4 @@ setConvenienceGoods();
 
   background-color: #000000;
 }
-
 </style>
